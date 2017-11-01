@@ -91,7 +91,7 @@ test_rename() {
     rbd rename bar bar2
     rbd rename bar2 foo2 2>&1 | grep exists
 
-    rados mkpool rbd2 123 1
+    rados mkpool rbd2
     rbd create -p rbd2 -s 1 foo
     rbd rename rbd2/foo rbd2/bar
     rbd -p rbd2 ls | grep bar
@@ -312,7 +312,7 @@ test_clone() {
     rbd snap create test1@s1
     rbd snap protect test1@s1
 
-    rados mkpool rbd2 123 1
+    rados mkpool rbd2
     rbd clone test1@s1 rbd2/clone
     rbd -p rbd2 ls | grep clone
     rbd -p rbd2 ls -l | grep clone | grep test1@s1
